@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+    
+    <title>Webbooster</title>
+</head>
+
+<body>
+
+    <div id="myModal" class="modal">
+        <form class="modal-content"   action="https://formspree.io/f/mzbkobno" method="POST">
+                <span class="close">&times;</span>
+                <h2>Заполните данные</h2>
+                <p><label>Вы выбрали<input id="name_prod" name="name"  type="hidden" value=""><output></output></label></p>
+                <p><label>Имя &nbsp &nbsp &nbsp <input name="name_buyer" type="text"></label></p>
+                <p><label>Телефон<input name="telephone" type="tel"></label></p>
+                <p><label>Email &nbsp &nbsp <input name="email" type="email"></label></p>
+
+                <p><input type="submit"></p>
+        </form>
+    </div>
+
+    <div id="products">
+    <!-- php скрипт заполнения карточек товаров из JSON файла -->
+    <?php
+        $product = json_decode(file_get_contents("product.json"), true);
+        for ($i = 1; $i < count($product["product"]); $i++) {
+           echo '<div class="product"> <div class="img"> <img src="';
+           echo $product["product"][$i]["img"];
+           echo '"> </div> <div class="name"> <p>';
+               echo $product["product"][$i]["name"];
+               echo '</p> </div> <div class="price"> <p>';
+                   echo $product["product"][$i]["price"];
+                   echo ' р</p> </div> <div class="btn"><button class="buy">Купить</button> </div> </div>';
+        }
+        ?>
+        <!-- Ниже результат выполнения первого: задания свёрстанные карточки -->
+        <!-- <div class="product">
+            <div class="img"><img src="http://dev-wbooster.ru/test_task/img/img-1.png"></div>
+            <div class="name">
+                <p>Парикмахерское кресло "Норм" гидравлическое</p>
+            </div>
+            <div class="price">
+                <p>9 900 р</p>
+            </div>
+            <div class="btn"><button class="buy">Купить</button></div>
+        </div>
+        <div class="product">
+            <div class="img"><img src="http://dev-wbooster.ru/test_task/img/img-1.png"></div>
+            <div class="name">
+                <p>Парикмахерское кресло "Норм" гидравлическое</p>
+            </div>
+            <div class="price">
+                <p>9 900 р</p>
+            </div>
+            <div class="btn"><button class="buy" data-hystmodal="#myModal">Купить</button></div>
+        </div>
+        <div class="product">
+            <div class="img"><img src="http://dev-wbooster.ru/test_task/img/img-1.png"></div>
+            <div class="name">
+                <p>Парикмахерское кресло "Норм" гидравлическое</p>
+            </div>
+            <div class="price">
+                <p>9 900 р</p>
+            </div>
+            <div class="btn"><button class="buy" data-hystmodal="#myModal">Купить</button></div>
+        </div>
+        <div class="product">
+            <div class="img"><img src="http://dev-wbooster.ru/test_task/img/img-1.png"></div>
+            <div class="name">
+                <p>Парикмахерское кресло "Норм" гидравлическое</p>
+            </div>
+            <div class="price">
+                <p>9 900 р</p>
+            </div>
+            <div class="btn"><button class="buy" data-hystmodal="#myModal">Купить</button></div>
+        </div> -->
+
+    </div>
+    <script src="script.js" async></script>
+</body>
+
+</html>
